@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme }) => {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="container nav-container">
                 <a href="#" className="logo" onClick={closeMenu}>
-                    <span className="logo-first">Rifat</span> <span className="logo-last">Cholakov</span>
+                    <span className="logo-primary">rifat</span><span className="logo-accent">cholakov</span><span className="logo-dot">.</span>
                 </a>
 
                 {/* Backdrop */}

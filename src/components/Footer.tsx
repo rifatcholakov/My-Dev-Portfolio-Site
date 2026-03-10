@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
                 <div className="footer-grid">
                     <div className="footer-brand">
                         <a href="#" className="logo">
-                            <span className="logo-first">Rifat</span> <span className="logo-last">Cholakov</span>
+                            <span className="logo-primary">rifat</span><span className="logo-accent">cholakov</span><span className="logo-dot">.</span>
                         </a>
                         <p className="footer-bio">
                             Engineering high-performance digital experiences with a focus on architectural integrity,
