@@ -115,8 +115,8 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-primary);
-    background: var(--bg-card);
-    box-shadow: 0 0 0 4px var(--border-subtle);
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
 }
 
 .form-group ::placeholder {

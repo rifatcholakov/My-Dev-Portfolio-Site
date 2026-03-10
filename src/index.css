@@ -27,29 +27,36 @@
 }
 
 [data-theme='dark'] {
-  /* Midnight Executive (Dark) - Refined for Depth */
+  /* SaaS-Style Layered Dark Mode */
   --bg-primary: #020617;
-  --bg-secondary: #030712;
-  /* Deeper contrast for background */
-  --bg-card: #0f172a;
+  /* Tier 1: Deepest Canvas */
+  --bg-secondary: #0a0f1e;
+  /* Tier 2: Subtle Section Layer */
+  --bg-card: #111a2e;
+  /* Tier 3: Elevated Surface */
+
   --text-primary: #f8fafc;
-  --text-secondary: #a1a1aa;
-  /* Increased contrast for accessibility */
-  --border-color: rgba(248, 250, 252, 0.1);
-  --border-subtle: rgba(248, 250, 252, 0.05);
-  --shadow-color: rgba(0, 0, 0, 0.6);
-  --shadow-sm: 0 2px 4px var(--shadow-color);
-  --shadow-md: 0 20px 40px var(--shadow-color);
-  --shadow-lg: 0 40px 80px var(--shadow-color);
-  --nav-bg: rgba(2, 6, 23, 0.95);
+  --text-secondary: #94a3b8;
 
-  --accent-primary: #f8fafc;
-  --accent-secondary: #94a3b8;
-  --accent-gradient: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+  --border-color: rgba(99, 102, 241, 0.1);
+  /* Subtle Indigo tinted border */
+  --border-subtle: rgba(99, 102, 241, 0.05);
 
-  --btn-bg: #f8fafc;
-  --btn-text: #020617;
-  --btn-hover-bg: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px var(--shadow-color);
+  --shadow-md: 0 10px 15px -3px var(--shadow-color);
+  --shadow-lg: 0 20px 25px -5px var(--shadow-color);
+
+  --nav-bg: rgba(2, 6, 23, 0.9);
+
+  --accent-primary: #6366f1;
+  /* Premium SaaS Indigo */
+  --accent-secondary: #818cf8;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+
+  --btn-bg: #6366f1;
+  --btn-text: #ffffff;
+  --btn-hover-bg: #4f46e5;
 }
 
 

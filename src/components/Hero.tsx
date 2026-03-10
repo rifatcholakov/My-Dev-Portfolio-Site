@@ -13,9 +13,9 @@ const Hero: React.FC = () => {
                 <div className="hero-grid reveal">
                     <div className="hero-text">
                         <p className="hero-greeting">Hi, I am Rifat 👋</p>
-                        <h1 className="hero-title">
+                        <h1 className="hero-title reveal monograph-animate">
                             Frontend<br />
-                            Developer
+                            <span>Developer</span>
                         </h1>
                         <p className="hero-description">
                             I specialize in creating organized, component-based architectures that make collaboration easy and development efficient. I take pride in turning complex designs into high-performance code that is easy for any team member to pick up and build upon and I’m here to help the team move quickly while keeping the code quality high.

@@ -118,10 +118,9 @@
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    width: 44px;
-    height: 44px;
-    border-radius: 2px;
-    font-size: 1rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,9 +130,10 @@
 }
 
 .slider-btn:hover {
-    background: var(--btn-bg);
-    color: var(--btn-text);
-    transform: translateX(3px);
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 /* Pagination Dots */
@@ -145,13 +145,13 @@
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--border-color);
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 0;
 }
 
@@ -160,10 +160,10 @@
 }
 
 .dot.active {
-    background: var(--text-primary);
+    background: var(--accent-primary);
     transform: scale(1.2);
-    width: 24px;
-    border-radius: 10px;
+    width: 32px;
+    border-radius: 4px;
 }
 
 
