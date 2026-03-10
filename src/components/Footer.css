@@ -35,10 +35,10 @@
     width: 8px;
     height: 8px;
     background-color: #10b981;
-    /* Professional Success Green */
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
 }
+
 
 .status-text {
     font-size: 0.75rem;

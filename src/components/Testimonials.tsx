@@ -68,7 +68,7 @@ const Testimonials: React.FC = () => {
                         >
                             {testimonials.map((testimonial, index) => (
                                 <div className="slide" key={index}>
-                                    <div className="testimonial-card glass">
+                                    <div className="testimonial-card">
                                         <div className="quote-icon">"</div>
                                         <p className="testimonial-text">{testimonial.text}</p>
                                         <div className="testimonial-author-info">

@@ -1,31 +1,55 @@
 :root {
-  /* Executive Color Palette */
+  /* Executive Color Palette (Light - Default) */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-card: #ffffff;
-
   --text-primary: #0f172a;
-  /* Deep Navy Slate */
   --text-secondary: #475569;
-  /* Balanced Slate */
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-subtle: rgba(15, 23, 42, 0.04);
+  --shadow-color: rgba(15, 23, 42, 0.08);
+  --shadow-sm: 0 2px 4px var(--shadow-color);
+  --shadow-md: 0 20px 40px var(--shadow-color);
+  --shadow-lg: 0 40px 80px var(--shadow-color);
+  --nav-bg: rgba(255, 255, 255, 0.85);
 
   --accent-primary: #0f172a;
-  /* Serious Tone */
   --accent-secondary: #334155;
   --accent-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
 
-  --border-color: rgba(15, 23, 42, 0.08);
-  /* Sophisticated solid-feel borders */
-  --border-highlight: rgba(15, 23, 42, 0.12);
+  --btn-bg: #0f172a;
+  --btn-text: #ffffff;
+  --btn-hover-bg: #1e293b;
 
-  /* Executive Typography */
   --font-serif: 'Lora', serif;
-  /* Balanced Authority */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-
   --section-padding: 12rem;
-  /* High-status expansive whitespace */
 }
+
+[data-theme='dark'] {
+  /* Midnight Executive (Dark) */
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --bg-card: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: rgba(248, 250, 252, 0.1);
+  --border-subtle: rgba(248, 250, 252, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 4px var(--shadow-color);
+  --shadow-md: 0 20px 40px var(--shadow-color);
+  --shadow-lg: 0 40px 80px var(--shadow-color);
+  --nav-bg: rgba(2, 6, 23, 0.9);
+
+  --accent-primary: #f8fafc;
+  --accent-secondary: #94a3b8;
+  --accent-gradient: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+
+  --btn-bg: #f8fafc;
+  --btn-text: #020617;
+  --btn-hover-bg: #e2e8f0;
+}
+
 
 * {
   margin: 0;
@@ -142,9 +166,9 @@ ul {
 
 /* Executive Card Style (Replaces bubbly glass) */
 .glass {
-  background: #ffffff;
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
   transition: all 0.4s ease;
 }
 

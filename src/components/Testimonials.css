@@ -36,12 +36,23 @@
 
 .testimonial-card {
     padding: 3rem;
-    border-radius: 20px;
+    border-radius: 2px;
+    /* Executive Sharpness */
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s ease;
 }
+
+.testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--text-primary);
+}
+
 
 .quote-icon {
     position: absolute;
@@ -104,13 +115,12 @@
 
 /* Navigation Buttons */
 .slider-btn {
-    background: #ffffff;
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     width: 44px;
     height: 44px;
     border-radius: 2px;
-    /* Sharp edges */
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -121,8 +131,8 @@
 }
 
 .slider-btn:hover {
-    background: var(--text-primary);
-    color: #ffffff;
+    background: var(--btn-bg);
+    color: var(--btn-text);
     transform: translateX(3px);
 }
 
@@ -138,7 +148,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--border-highlight);
+    background: var(--border-color);
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -150,11 +160,12 @@
 }
 
 .dot.active {
-    background: var(--accent-primary);
+    background: var(--text-primary);
     transform: scale(1.2);
     width: 24px;
     border-radius: 10px;
 }
+
 
 @media (max-width: 768px) {
     .testimonial-card {

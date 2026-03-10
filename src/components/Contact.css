@@ -73,10 +73,10 @@
 
 /* Form Styling */
 .contact-form-container {
-    background: #ffffff;
+    background: var(--bg-card);
     padding: 4rem;
     border: 1px solid var(--border-color);
-    box-shadow: 30px 30px 80px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-lg);
 }
 
 .contact-form {
@@ -115,8 +115,9 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--text-primary);
-    background: #ffffff;
+    background: var(--bg-card);
 }
+
 
 .form-group ::placeholder {
     color: var(--text-secondary);
