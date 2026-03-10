@@ -21,14 +21,15 @@ const Navbar: React.FC = () => {
         <nav className={`navbar ${scrolled ? 'scrolled glass' : ''}`}>
             <div className="container nav-container">
                 <a href="#" className="logo">
-                    Rifat Cholakov
+                    <span className="logo-first">Rifat</span> <span className="logo-last">Cholakov</span>
                 </a>
                 <ul className="nav-links">
                     <li><a href="#hero">Home</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#why-choose-me">Why Me</a></li>
-                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Expertise</a></li>
+                    <li><a href="#projects">Work</a></li>
+                    <li><a href="#why-choose-me">Philosophy</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Connect</a></li>
                 </ul>
                 <a href="#projects" className="cta-button">View Work</a>
             </div>

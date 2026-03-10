@@ -36,6 +36,11 @@ const Skills: React.FC = () => {
         <section id="skills" className="section skills-section">
             <div className="container">
                 <div className="title-wrapper reveal">
+                    <div className="section-marker">
+                        <span className="marker-line"></span>
+                        <span className="marker-text">Expertise</span>
+                        <span className="marker-line"></span>
+                    </div>
                     <h2 className="section-title">What I can do for you</h2>
                     <p className="section-subtitle">Delivering high-quality code and seamless experiences from concept to production.</p>
                 </div>

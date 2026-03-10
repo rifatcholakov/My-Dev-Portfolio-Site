@@ -1,6 +1,5 @@
 .why-choose-me-section {
-    background-color: var(--bg-primary);
-    /* Alternate background */
+    background-color: var(--bg-secondary);
     position: relative;
 }
 

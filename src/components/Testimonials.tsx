@@ -47,6 +47,11 @@ const Testimonials: React.FC = () => {
         <section id="testimonials" className="section testimonials-section">
             <div className="container">
                 <div className="title-wrapper reveal">
+                    <div className="section-marker">
+                        <span className="marker-line"></span>
+                        <span className="marker-text">Testimonials</span>
+                        <span className="marker-line"></span>
+                    </div>
                     <h2 className="section-title">What others say about me</h2>
                     <p className="section-subtitle">Feedback from colleagues and clients I've had the pleasure to work with.</p>
                 </div>

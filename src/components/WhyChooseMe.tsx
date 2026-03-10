@@ -39,6 +39,11 @@ const WhyChooseMe: React.FC = () => {
         <section id="why-choose-me" className="section why-choose-me-section">
             <div className="container">
                 <div className="title-wrapper reveal">
+                    <div className="section-marker">
+                        <span className="marker-line"></span>
+                        <span className="marker-text">Philosophy</span>
+                        <span className="marker-line"></span>
+                    </div>
                     <h2 className="section-title">Why choose me</h2>
                     <p className="section-subtitle">Delivering value beyond just writing code.</p>
                 </div>

@@ -27,6 +27,11 @@ const Projects: React.FC = () => {
         <section id="projects" className="section projects-section">
             <div className="container">
                 <div className="title-wrapper reveal">
+                    <div className="section-marker">
+                        <span className="marker-line"></span>
+                        <span className="marker-text">Selected Work</span>
+                        <span className="marker-line"></span>
+                    </div>
                     <h2 className="section-title">My Projects</h2>
                     <p className="section-subtitle">A selection of my recent work and technical experiments.</p>
                 </div>

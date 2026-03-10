@@ -23,8 +23,8 @@
   /* Balanced Authority */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
-  --section-padding: 8rem;
-  /* More generous whitespace */
+  --section-padding: 12rem;
+  /* High-status expansive whitespace */
 }
 
 * {
@@ -82,29 +82,43 @@ ul {
   position: relative;
 }
 
+/* Clean architectural titles per executive redesign */
 .section-title {
-  font-size: 3.5rem;
-  margin-bottom: 3.5rem;
+  font-size: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
   position: relative;
   display: inline-block;
 }
 
-/* Subtle accent line for authority */
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--text-primary);
-}
-
 .title-wrapper {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
+}
+
+/* Architectural Section Marker */
+.section-marker {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.marker-line {
+  height: 1px;
+  width: 40px;
+  background: var(--text-primary);
+  opacity: 0.2;
+}
+
+.marker-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--text-secondary);
+  opacity: 0.6;
 }
 
 /* Utilities */
