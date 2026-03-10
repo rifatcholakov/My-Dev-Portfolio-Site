@@ -87,10 +87,6 @@
     z-index: -1;
 }
 
-.hero-image-wrapper:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-primary);
-}
 
 .hero-profile-image {
     width: 100%;
