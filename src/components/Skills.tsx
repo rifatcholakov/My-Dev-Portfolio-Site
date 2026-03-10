@@ -64,8 +64,11 @@ const Skills: React.FC = () => {
 
                 <div className="expertise-grid">
                     {skillsData.map((skill, index) => (
-                        <div className="executive-card reveal monograph-animate" key={index} style={{ transitionDelay: `${index * 0.15}s` }}>
-                            <div className="card-accent"></div>
+                        <div
+                            className="executive-card reveal monograph-animate"
+                            key={index}
+                            style={{ transitionDelay: `${index * 0.15}s` }}
+                        >
                             <div className="card-header">
                                 <div className="card-icon-box">{skill.icon}</div>
                                 <h3 className="card-title">{skill.title}</h3>
