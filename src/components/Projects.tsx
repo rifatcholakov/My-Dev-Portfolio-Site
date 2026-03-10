@@ -1,7 +1,6 @@
 import './Projects.css';
 import { PROJECTS_DATA } from '../constants/data';
-
-const GITHUB_PROFILE_URL = 'https://github.com/rifatcholakov?tab=repositories';
+import { PROFILE } from '../config';
 
 const GitHubIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="github-icon" aria-hidden="true">
@@ -53,7 +52,7 @@ const Projects = () => {
 
                 <div className="projects-cta reveal" style={{ transitionDelay: '0.4s' }}>
                     <a
-                        href={GITHUB_PROFILE_URL}
+                        href={PROFILE.GITHUB_REPOS_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="executive-cta-button"
