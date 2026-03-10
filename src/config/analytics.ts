@@ -4,7 +4,7 @@
  * Replace GA_MEASUREMENT_ID with your actual GA4 Measurement ID.
  */
 export const GA_CONFIG = {
-    MEASUREMENT_ID: 'G-XXXXXXXXXX', // ← Replace with your GA4 Measurement ID
+    MEASUREMENT_ID: import.meta.env.VITE_GA_MEASUREMENT_ID || '', // ← Replace with your GA4 Measurement ID in .env
 } as const;
 
 export const COOKIE_CONSENT_KEY = 'cookie_consent';

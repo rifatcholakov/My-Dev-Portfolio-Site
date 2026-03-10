@@ -28,8 +28,8 @@ src/
 │   ├── Footer.tsx        # Footer with nav, legal links, and cookie preferences
 │   └── ...
 ├── config/             # Centralized configuration
-│   ├── analytics.ts    # GA4 config, consent helpers, cookie removal
-│   └── index.ts        # API keys, validation rules, profile links
+│   ├── analytics.ts    # GA4 config, reads VITE_GA_MEASUREMENT_ID from env
+│   └── index.ts        # Reads VITE_WEB3FORMS_KEY from env, validation rules, profile
 ├── constants/          # Static data (projects, skills, testimonials)
 │   └── data.tsx
 ├── context/            # React Context providers
@@ -53,7 +53,14 @@ public/
 ├── cookie-policy.html    # Cookie Policy legal page
 ├── terms-of-use.html     # Terms of Use legal page
 ├── legal.css             # Shared stylesheet for all legal pages
-└── legal-theme.js        # Inline theme sync script for legal pages
+├── legal-theme.js        # Inline theme sync script for legal pages
+├── _headers              # Cloudflare Pages security & caching headers
+└── _redirects            # Cloudflare Pages SPA fallback routing
+
+/ (Root)
+├── .env.example          # Template for required environment variables
+├── .env.local            # Git-ignored local environment secrets
+└── wrangler.toml         # Cloudflare Pages project configuration
 ```
 
 ---
@@ -74,6 +81,10 @@ cd portfolio
 
 # Install dependencies
 npm install
+
+# Setup environment variables
+cp .env.example .env.local
+# (Edit .env.local to add your Web3Forms Key and GA4 Measurement ID)
 
 # Start the development server
 npm run dev
@@ -100,14 +111,11 @@ The contact form uses [Web3Forms](https://web3forms.com) for email delivery and 
 
 ### 1. Web3Forms Access Key
 
-Update your access key in `src/config/index.ts`:
+Your access key is loaded securely from the `.env.local` file `VITE_WEB3FORMS_KEY`. Make sure it's set:
 
-```ts
-export const CONTACT_CONFIG = {
-    API_URL: 'https://api.web3forms.com/submit',
-    ACCESS_KEY: 'YOUR_ACCESS_KEY_HERE',
-    HCAPTCHA_SITE_KEY: '50b2fe65-b00b-4b9e-ad62-3ba471098be2', // Free plan shared key
-};
+```env
+# .env.local
+VITE_WEB3FORMS_KEY=YOUR_ACCESS_KEY_HERE
 ```
 
 Get a free access key at [web3forms.com](https://web3forms.com).
@@ -118,7 +126,7 @@ Get a free access key at [web3forms.com](https://web3forms.com).
 - Select your form
 - Under **Block Spam**, switch to **hCaptcha**
 
-> **Note**: The hCaptcha site key `50b2fe65-b00b-4b9e-ad62-3ba471098be2` is the Web3Forms shared free-plan key. Replace it with your own on a paid plan.
+> **Note**: The hCaptcha site key `50b2fe65-b00b-4b9e-ad62-3ba471098be2` hardcoded in `src/config/index.ts` is the Web3Forms shared free-plan key. Replace it with your own on a paid plan.
 
 ---
 
@@ -134,12 +142,11 @@ The site implements a **GDPR-compliant cookie consent flow** via the `CookieBann
 
 ### Google Analytics Setup
 
-Set your GA4 Measurement ID in `src/config/analytics.ts`:
+Your GA4 Measurement ID is loaded securely from `.env.local`:
 
-```ts
-export const GA_CONFIG = {
-    MEASUREMENT_ID: 'G-XXXXXXXXXX', // ← Replace with your GA4 Measurement ID
-};
+```env
+# .env.local
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
 Get a free Measurement ID from [Google Analytics](https://analytics.google.com).
@@ -223,24 +230,30 @@ Pure validation logic lives in `src/utils/validation.ts` — fully testable with
 - **No prop drilling** — theme state is consumed via `useTheme()` context hook
 - **Service layer** — `contactService.ts` owns all `fetch` logic; components never call APIs directly
 - **Consent-gated analytics** — GA4 is loaded only after explicit user consent; removal is instant on rejection
-- **Legal page theming** — a tiny vanilla JS snippet (`legal-theme.js`) syncs theme to static HTML pages without React overhead
+- **Environment bindings** — Keys/secrets are loaded from `import.meta.env` rather than hardcoded in source
+- **Cloudflare Pages optimized** — Includes secure `_headers` and SPA `_redirects` rules
 - **IntersectionObserver** for scroll animations instead of raw scroll listeners — more performant and auto-cleans up
 - **Stable React keys** — all `.map()` calls use meaningful unique IDs, not array indices
 - **`import type`** used throughout for TypeScript interfaces — compatible with `isolatedModules`
 
 ---
 
-## 🌐 Deployment
+## 🌐 Deployment (Cloudflare Pages)
 
-Build output goes to `dist/`. Deploy to any static host:
+The project is fully configured for zero-config deployment to **Cloudflare Pages**. 
+
+### 1. Deploying the app
+Connect your GitHub repository to Cloudflare Pages. The `wrangler.toml` file will automatically configure the build output directory to `dist/`. Or manually deploy via Wrangler:
 
 ```bash
 npm run build
+npx wrangler pages deploy dist
 ```
 
-Compatible with: **Vercel**, **Netlify**, **GitHub Pages**, **Cloudflare Pages**.
-
-> The legal pages (`privacy-policy.html`, `cookie-policy.html`, `terms-of-use.html`) in `public/` are automatically copied to the build output by Vite and served as static files at their respective paths.
+### 2. Configure Production Secrets
+> **Important**: You must configure the following Environment Variables in your Cloudflare Pages Dashboard for the app to function correctly in production:
+- `VITE_WEB3FORMS_KEY`
+- `VITE_GA_MEASUREMENT_ID`
 
 ---
 
