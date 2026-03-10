@@ -1,6 +1,6 @@
 # rifatcholakov.com — Personal Portfolio
 
-A production-ready personal portfolio built with **React**, **TypeScript**, and **Vite**. Features a light/dark theme, animated scroll reveals, a contact form powered by Web3Forms with hCaptcha spam protection, and a fully scalable project architecture.
+A production-ready personal portfolio built with **React**, **TypeScript**, and **Vite**. Features a light/dark theme, animated scroll reveals, a contact form powered by Web3Forms with hCaptcha spam protection, a cookie consent system with Google Analytics integration, and a full set of legal pages (Privacy Policy, Cookie Policy, Terms of Use).
 
 ---
 
@@ -8,11 +8,12 @@ A production-ready personal portfolio built with **React**, **TypeScript**, and 
 
 | Layer | Technology |
 |---|---|
-| Framework | React 18 + TypeScript |
+| Framework | React 19 + TypeScript |
 | Build Tool | Vite |
 | Styling | Vanilla CSS with CSS custom properties |
 | Contact Form API | [Web3Forms](https://web3forms.com) |
 | Captcha | [hCaptcha](https://hcaptcha.com) via `@hcaptcha/react-hcaptcha` |
+| Analytics | Google Analytics 4 (GA4) — consent-gated |
 | State | React Context (`ThemeContext`) |
 | Animations | `IntersectionObserver` (custom `useScrollReveal` hook) |
 
@@ -23,8 +24,12 @@ A production-ready personal portfolio built with **React**, **TypeScript**, and 
 ```
 src/
 ├── components/         # UI components (Navbar, Hero, Skills, Projects, etc.)
-├── config/             # Centralized configuration (API keys, messages, URLs)
-│   └── index.ts
+│   ├── CookieBanner.tsx  # GDPR cookie consent banner
+│   ├── Footer.tsx        # Footer with nav, legal links, and cookie preferences
+│   └── ...
+├── config/             # Centralized configuration
+│   ├── analytics.ts    # GA4 config, consent helpers, cookie removal
+│   └── index.ts        # API keys, validation rules, profile links
 ├── constants/          # Static data (projects, skills, testimonials)
 │   └── data.tsx
 ├── context/            # React Context providers
@@ -42,6 +47,13 @@ src/
 ├── App.tsx
 ├── main.tsx
 └── index.css           # Global CSS design system (tokens, variables)
+
+public/
+├── privacy-policy.html   # Privacy Policy legal page
+├── cookie-policy.html    # Cookie Policy legal page
+├── terms-of-use.html     # Terms of Use legal page
+├── legal.css             # Shared stylesheet for all legal pages
+└── legal-theme.js        # Inline theme sync script for legal pages
 ```
 
 ---
@@ -78,6 +90,7 @@ The app runs at `http://localhost:5173` by default.
 | `npm run dev` | Start the local development server |
 | `npm run build` | Type-check and build for production |
 | `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint across the project |
 
 ---
 
@@ -109,6 +122,49 @@ Get a free access key at [web3forms.com](https://web3forms.com).
 
 ---
 
+## 🍪 Cookie Consent & Analytics
+
+The site implements a **GDPR-compliant cookie consent flow** via the `CookieBanner` component.
+
+- On first visit, a banner appears asking the user to **Accept All** or **Reject All** analytics cookies.
+- The user's decision is persisted to `localStorage` under the key `cookie_consent`.
+- Google Analytics 4 (GA4) is **only loaded after the user accepts**.
+- If consent is revoked, GA cookies (`_ga`, `_gid`, `_gat`) are removed immediately.
+- Cookie preferences can be re-opened at any time via the **Cookie Preferences** link in the footer.
+
+### Google Analytics Setup
+
+Set your GA4 Measurement ID in `src/config/analytics.ts`:
+
+```ts
+export const GA_CONFIG = {
+    MEASUREMENT_ID: 'G-XXXXXXXXXX', // ← Replace with your GA4 Measurement ID
+};
+```
+
+Get a free Measurement ID from [Google Analytics](https://analytics.google.com).
+
+---
+
+## 📄 Legal Pages
+
+Three standalone legal pages are included in the `public/` directory:
+
+| Page | Path |
+|---|---|
+| Privacy Policy | `/privacy-policy.html` |
+| Cookie Policy | `/cookie-policy.html` |
+| Terms of Use | `/terms-of-use.html` |
+
+### Theming on Legal Pages
+
+Legal pages are **not** React-rendered, so they use a dedicated system to stay in sync with the main site's theme:
+
+- `public/legal.css` — mirrors the main site's CSS custom property tokens for both light and dark modes.
+- `public/legal-theme.js` — an inline script that reads `localStorage('theme')` (or falls back to `prefers-color-scheme`) and sets `data-theme` on `<html>` before first paint, eliminating any flash of wrong theme.
+
+---
+
 ## 🎨 Theming
 
 The site supports **light** and **dark** modes. The active theme is persisted to `localStorage`.
@@ -120,7 +176,7 @@ import { useTheme } from './context/ThemeContext';
 const { theme, toggleTheme } = useTheme();
 ```
 
-CSS variables are defined in `src/index.css` under `[data-theme="light"]` and `[data-theme="dark"]` selectors.
+CSS variables are defined in `src/index.css` under `[data-theme="light"]` and `[data-theme="dark"]` selectors. Legal pages mirror these same variables via `public/legal.css`.
 
 ---
 
@@ -166,6 +222,8 @@ Pure validation logic lives in `src/utils/validation.ts` — fully testable with
 
 - **No prop drilling** — theme state is consumed via `useTheme()` context hook
 - **Service layer** — `contactService.ts` owns all `fetch` logic; components never call APIs directly
+- **Consent-gated analytics** — GA4 is loaded only after explicit user consent; removal is instant on rejection
+- **Legal page theming** — a tiny vanilla JS snippet (`legal-theme.js`) syncs theme to static HTML pages without React overhead
 - **IntersectionObserver** for scroll animations instead of raw scroll listeners — more performant and auto-cleans up
 - **Stable React keys** — all `.map()` calls use meaningful unique IDs, not array indices
 - **`import type`** used throughout for TypeScript interfaces — compatible with `isolatedModules`
@@ -181,6 +239,8 @@ npm run build
 ```
 
 Compatible with: **Vercel**, **Netlify**, **GitHub Pages**, **Cloudflare Pages**.
+
+> The legal pages (`privacy-policy.html`, `cookie-policy.html`, `terms-of-use.html`) in `public/` are automatically copied to the build output by Vite and served as static files at their respective paths.
 
 ---
 
