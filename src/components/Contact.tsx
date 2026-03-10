@@ -1,20 +1,20 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import './Contact.css';
 import { submitContactForm } from '../services/contactService';
 import { validateContactForm, isFormValid } from '../utils/validation';
 import type { FormErrors, FormFields } from '../utils/validation';
-import { PROFILE, FORM_MESSAGES } from '../config';
+import { PROFILE, FORM_MESSAGES, CONTACT_CONFIG } from '../config';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 const EMPTY_FORM: FormFields = { name: '', email: '', message: '' };
 
-// ─── Sub-component: shows a single detail row ────────────────────────────────
+// ─── Sub-component: contact detail row ───────────────────────────────────────
 interface DetailItemProps {
     label: string;
     children: React.ReactNode;
 }
-
 const DetailItem = ({ label, children }: DetailItemProps) => (
     <div className="detail-item">
         <span className="detail-label">{label}</span>
@@ -22,15 +22,14 @@ const DetailItem = ({ label, children }: DetailItemProps) => (
     </div>
 );
 
-// ─── Sub-component: a single validated form field ────────────────────────────
-interface FieldProps {
+// ─── Sub-component: validated form field ─────────────────────────────────────
+interface FormFieldProps {
     id: keyof FormFields;
     label: string;
     error?: string;
     children: React.ReactElement;
 }
-
-const FormField = ({ id, label, error, children }: FieldProps) => (
+const FormField = ({ id, label, error, children }: FormFieldProps) => (
     <div className={`form-group ${error ? 'has-error' : ''}`}>
         <label htmlFor={id}>{label}</label>
         {children}
@@ -48,12 +47,16 @@ const Contact = () => {
     const [errors, setErrors] = useState<FormErrors>({});
     const [status, setStatus] = useState<FormStatus>('idle');
     const [serverMessage, setServerMessage] = useState<string>('');
+    const [captchaToken, setCaptchaToken] = useState<string>('');
+
+    // Ref to the HCaptcha widget — used to programmatically reset it after submit
+    const captchaRef = useRef<HCaptcha>(null);
 
     const handleChange = useCallback(
         (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             const { name, value } = e.target;
             setFields(prev => ({ ...prev, [name]: value }));
-            // Clear individual field error on change for better UX
+            // Clear individual field error on change
             if (errors[name as keyof FormErrors]) {
                 setErrors(prev => ({ ...prev, [name]: undefined }));
             }
@@ -64,25 +67,38 @@ const Contact = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // Validate before hitting the API
+        // 1. Client-side field validation
         const validationErrors = validateContactForm(fields);
         if (!isFormValid(validationErrors)) {
             setErrors(validationErrors);
             return;
         }
 
+        // 2. Captcha must be solved before submitting
+        if (!captchaToken) {
+            setStatus('error');
+            setServerMessage('Please complete the captcha before sending.');
+            return;
+        }
+
         setStatus('loading');
         setServerMessage('');
 
-        const result = await submitContactForm(fields);
+        // 3. Submit via service layer (captcha token sent to Web3Forms for verification)
+        const result = await submitContactForm({ ...fields, captchaToken });
 
         if (result.success) {
             setStatus('success');
             setFields(EMPTY_FORM);
             setErrors({});
+            setCaptchaToken('');
+            captchaRef.current?.resetCaptcha();
         } else {
             setStatus('error');
             setServerMessage(result.message);
+            // Reset captcha so user can try again
+            setCaptchaToken('');
+            captchaRef.current?.resetCaptcha();
         }
     };
 
@@ -164,6 +180,17 @@ const Contact = () => {
                                 ></textarea>
                             </FormField>
 
+                            {/* hCaptcha widget — reCaptchaCompat must be false for Web3Forms */}
+                            <div className="captcha-wrapper">
+                                <HCaptcha
+                                    sitekey={CONTACT_CONFIG.HCAPTCHA_SITE_KEY}
+                                    reCaptchaCompat={false}
+                                    onVerify={(token) => setCaptchaToken(token)}
+                                    onExpire={() => setCaptchaToken('')}
+                                    ref={captchaRef}
+                                />
+                            </div>
+
                             <button
                                 type="submit"
                                 className={`btn-primary btn-executive full-width ${isLoading ? 'loading' : ''}`}
@@ -172,7 +199,7 @@ const Contact = () => {
                                 {isLoading ? FORM_MESSAGES.SENDING : FORM_MESSAGES.SUBMIT}
                             </button>
 
-                            {/* Screen readers announce this region on status change */}
+                            {/* Screen readers announce this on status change */}
                             <div
                                 role="status"
                                 aria-live="polite"

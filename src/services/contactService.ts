@@ -9,6 +9,7 @@ export interface ContactPayload {
     name: string;
     email: string;
     message: string;
+    captchaToken: string;
 }
 
 export interface ContactResult {
@@ -22,6 +23,8 @@ export async function submitContactForm(payload: ContactPayload): Promise<Contac
     formData.append('name', payload.name);
     formData.append('email', payload.email);
     formData.append('message', payload.message);
+    // hCaptcha token — Web3Forms verifies this server-side
+    formData.append('h-captcha-response', payload.captchaToken);
 
     try {
         const response = await fetch(CONTACT_CONFIG.API_URL, {
