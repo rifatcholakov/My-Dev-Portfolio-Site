@@ -70,8 +70,13 @@
     padding: 0;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    box-shadow: 20px 20px 0px rgba(15, 23, 42, 0.03);
+    box-shadow: 20px 20px 0px var(--border-subtle);
     /* Structured shadow */
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-image-wrapper:hover {
+    transform: scale(1.02);
 }
 
 .hero-profile-image {
@@ -188,8 +193,9 @@
 }
 
 .btn-secondary:hover {
-    background: var(--border-subtle);
-    /* Dark hover effect for light theme */
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
     transform: translateY(-3px);
 }
 
