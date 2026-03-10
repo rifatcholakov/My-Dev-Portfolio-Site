@@ -1,49 +1,59 @@
-import React, { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './Contact.css';
 
-const Contact: React.FC = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
+const WEB3FORMS_ACCESS_KEY = '895ca81f-72d5-47df-833c-0b6f20ad33aa';
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
-    const [result, setResult] = useState<string>("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
+interface FormFields {
+    name: string;
+    email: string;
+    message: string;
+}
+
+const EMPTY_FORM: FormFields = { name: '', email: '', message: '' };
+
+const Contact = () => {
+    const [fields, setFields] = useState<FormFields>(EMPTY_FORM);
+    const [status, setStatus] = useState<FormStatus>('idle');
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
+    const handleChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            const { name, value } = e.target;
+            setFields(prev => ({ ...prev, [name]: value }));
+        },
+        []
+    );
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setResult("Sending...");
+        setStatus('loading');
+        setErrorMessage('');
 
-        const formData = new FormData(e.currentTarget);
-        formData.append("access_key", "895ca81f-72d5-47df-833c-0b6f20ad33aa");
+        // Renamed to `payload` to avoid shadowing the `fields` state above
+        const payload = new FormData(e.currentTarget);
+        payload.append('access_key', WEB3FORMS_ACCESS_KEY);
 
         try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            });
-
+            const response = await fetch(WEB3FORMS_URL, { method: 'POST', body: payload });
             const data = await response.json();
 
             if (data.success) {
-                setResult("Thank you! Your message has been sent successfully.");
-                setFormData({ name: '', email: '', message: '' });
+                setStatus('success');
+                setFields(EMPTY_FORM);
             } else {
-                setResult(data.message || "Something went wrong. Please try again.");
+                setStatus('error');
+                setErrorMessage(data.message || 'Something went wrong. Please try again.');
             }
-        } catch (error) {
-            setResult("Could not connect to the server. Please check your internet.");
-        } finally {
-            setIsSubmitting(false);
+        } catch {
+            setStatus('error');
+            setErrorMessage('Could not connect to the server. Please check your internet connection.');
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
+    const isLoading = status === 'loading';
 
     return (
         <section id="contact" className="section contact-section">
@@ -62,7 +72,9 @@ const Contact: React.FC = () => {
                         <div className="contact-details">
                             <div className="detail-item">
                                 <span className="detail-label">Email</span>
-                                <a href="mailto:contact@rifatcholakov.com" className="detail-link">contact@rifatcholakov.com</a>
+                                <a href="mailto:contact@rifatcholakov.com" className="detail-link">
+                                    contact@rifatcholakov.com
+                                </a>
                             </div>
                             <div className="detail-item">
                                 <span className="detail-label">Location</span>
@@ -71,63 +83,47 @@ const Contact: React.FC = () => {
                             <div className="detail-item">
                                 <span className="detail-label">Social</span>
                                 <div className="social-links">
-                                    <a href="https://www.linkedin.com/in/rifatcholakov/" target='_blank' className="detail-link">LinkedIn</a>
-                                    <a href="https://github.com/rifatcholakov" target='_blank' className="detail-link">GitHub</a>
+                                    {/* Fixed: added rel="noreferrer" to prevent referrer leaking */}
+                                    <a href="https://www.linkedin.com/in/rifatcholakov/" target="_blank" rel="noopener noreferrer" className="detail-link">LinkedIn</a>
+                                    <a href="https://github.com/rifatcholakov" target="_blank" rel="noopener noreferrer" className="detail-link">GitHub</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="contact-form-container">
-                        <form className="contact-form" onSubmit={handleSubmit}>
+                        <form className="contact-form" onSubmit={handleSubmit} noValidate>
                             <div className="form-group">
                                 <label htmlFor="name">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder="Enter your name"
-                                    required
-                                />
+                                <input type="text" id="name" name="name" value={fields.name} onChange={handleChange} placeholder="Enter your name" required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="email@example.com"
-                                    required
-                                />
+                                <input type="email" id="email" name="email" value={fields.email} onChange={handleChange} placeholder="email@example.com" required />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="message">Message</label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    placeholder="How can I help you?"
-                                    rows={5}
-                                    required
-                                ></textarea>
+                                <textarea id="message" name="message" value={fields.message} onChange={handleChange} placeholder="How can I help you?" rows={5} required></textarea>
                             </div>
+
                             <button
                                 type="submit"
-                                className={`btn-primary btn-executive full-width ${isSubmitting ? 'loading' : ''}`}
-                                disabled={isSubmitting}
+                                className={`btn-primary btn-executive full-width ${isLoading ? 'loading' : ''}`}
+                                disabled={isLoading}
                             >
-                                {isSubmitting ? 'Processing...' : 'Send message'}
+                                {isLoading ? 'Sending...' : 'Send Message'}
                             </button>
-                            {result && (
-                                <div className={`form-result ${result.includes('Success') || result.includes('Thank you') ? 'success' : 'error'}`}>
-                                    {result}
-                                </div>
-                            )}
+
+                            {/* aria-live ensures screen readers announce status changes */}
+                            <div
+                                role="status"
+                                aria-live="polite"
+                                aria-atomic="true"
+                                className={`form-result ${status === 'idle' ? '' : status}`}
+                            >
+                                {status === 'success' && 'Thank you! Your message has been sent successfully.'}
+                                {status === 'error' && errorMessage}
+                            </div>
                         </form>
                     </div>
                 </div>

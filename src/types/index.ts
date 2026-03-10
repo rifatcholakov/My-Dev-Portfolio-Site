@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface Project {
     title: string;
     github: string;
@@ -6,7 +8,7 @@ export interface Project {
 
 export interface SkillItem {
     title: string;
-    icon: React.ReactNode;
+    icon: ReactNode;
     items: string[];
 }
 

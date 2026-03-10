@@ -1,5 +1,5 @@
-import React from 'react';
-import { Project, SkillItem, Testimonial } from '../types';
+/** @jsxRuntime automatic */
+import type { Project, SkillItem, Testimonial } from '../types';
 import copyEnableImg from '../assets/copy-enable.png';
 
 export const PROJECTS_DATA: Project[] = [
