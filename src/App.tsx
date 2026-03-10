@@ -8,10 +8,10 @@ import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
 import './App.css';
 
 function AppContent() {
-  // Replaces the raw scroll listener — uses IntersectionObserver under the hood
   useScrollReveal();
 
   return (
@@ -26,6 +26,8 @@ function AppContent() {
         <Contact />
       </main>
       <Footer />
+      {/* Cookie consent banner — renders only when no prior decision exists */}
+      <CookieBanner />
     </div>
   );
 }

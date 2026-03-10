@@ -1,8 +1,11 @@
-import React from 'react';
 import './Footer.css';
 
-const Footer: React.FC = () => {
+const Footer = () => {
     const currentYear = new Date().getFullYear();
+
+    const openCookiePreferences = () => {
+        window.dispatchEvent(new Event('open-cookie-banner'));
+    };
 
     return (
         <footer className="footer-section">
@@ -44,9 +47,20 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="footer-column">
-                        <h4 className="column-title">Resources</h4>
+                        <h4 className="column-title">Legal</h4>
                         <ul className="footer-links">
-                            <li><a href="#" className="resource-link">Download CV / Resume</a></li>
+                            <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="/cookie-policy.html">Cookie Policy</a></li>
+                            <li><a href="/terms-of-use.html">Terms of Use</a></li>
+                            <li>
+                                <button
+                                    className="footer-cookie-btn"
+                                    onClick={openCookiePreferences}
+                                    aria-label="Manage cookie preferences"
+                                >
+                                    Cookie Preferences
+                                </button>
+                            </li>
                         </ul>
                     </div>
                 </div>

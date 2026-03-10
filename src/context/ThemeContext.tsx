@@ -8,10 +8,15 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const getInitialTheme = (): Theme => {
+    const stored = localStorage.getItem('theme') as Theme | null;
+    if (stored === 'light' || stored === 'dark') return stored;
+    // Fall back to OS/browser preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+};
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>(
-        (localStorage.getItem('theme') as Theme) || 'light'
-    );
+    const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';

@@ -1,0 +1,155 @@
+/* ─── Legal Pages — Shared CSS ───────────────────────────────────────────────
+ * Used by: privacy-policy.html, cookie-policy.html, terms-of-use.html
+ * Theme tokens mirror the main site's design system.
+ * The active theme is applied via data-theme on <html> by legal-theme.js.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Color tokens ────────────────────────────────────────────────────────── */
+:root {
+    --bg: #ffffff;
+    --bg-card: #f8fafc;
+    --text: #0f172a;
+    --text-muted: #475569;
+    --border: rgba(15, 23, 42, 0.08);
+    --accent: #0f172a;
+    --table-head: #f1f5f9;
+    --code-bg: #f1f5f9;
+}
+
+[data-theme="dark"] {
+    --bg: #020617;
+    --bg-card: #0a0f1e;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(99, 102, 241, 0.12);
+    --accent: #6366f1;
+    --table-head: #111a2e;
+    --code-bg: #111a2e;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text-muted);
+    line-height: 1.8;
+    padding: 0 1.5rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.legal-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 5rem 0;
+}
+
+/* ── Back link ────────────────────────────────────────────────────────────── */
+.back-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    margin-bottom: 3rem;
+    font-size: 0.9rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+h1 {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.legal-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 1.15rem;
+    color: var(--text);
+    font-weight: 600;
+    margin: 2.5rem 0 0.75rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.75rem;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+ul {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+li {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+a {
+    color: var(--accent);
+}
+
+strong {
+    color: var(--text);
+}
+
+code {
+    background: var(--code-bg);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.88rem;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+}
+
+/* ── Table (cookie policy) ────────────────────────────────────────────────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+}
+
+th {
+    background: var(--table-head);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+td {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    vertical-align: top;
+}
+
+/* ── Footer note ──────────────────────────────────────────────────────────── */
+.legal-footer-note {
+    font-size: 0.85rem;
+}
