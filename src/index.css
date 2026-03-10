@@ -1,0 +1,140 @@
+:root {
+  /* Executive Color Palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card: #ffffff;
+
+  --text-primary: #0f172a;
+  /* Deep Navy Slate */
+  --text-secondary: #475569;
+  /* Balanced Slate */
+
+  --accent-primary: #0f172a;
+  /* Serious Tone */
+  --accent-secondary: #334155;
+  --accent-gradient: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+
+  --border-color: rgba(15, 23, 42, 0.08);
+  /* Sophisticated solid-feel borders */
+  --border-highlight: rgba(15, 23, 42, 0.12);
+
+  /* Executive Typography */
+  --font-serif: 'Lora', serif;
+  /* Balanced Authority */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --section-padding: 8rem;
+  /* More generous whitespace */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  margin-bottom: 3.5rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+/* Subtle accent line for authority */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--text-primary);
+}
+
+.title-wrapper {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* Utilities */
+.text-gradient {
+  color: var(--text-primary);
+  /* Remove colorful gradients in text for seriousness */
+  font-style: italic;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Executive Card Style (Replaces bubbly glass) */
+.glass {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+}
+
+.glass:hover {
+  border-color: var(--text-primary);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}

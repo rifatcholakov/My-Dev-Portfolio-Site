@@ -1,0 +1,10 @@
+/* Empty for now, relying on index.css mostly but keeping it around */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

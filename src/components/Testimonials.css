@@ -1,0 +1,168 @@
+.testimonials-section {
+    background-color: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 4rem;
+    position: relative;
+}
+
+.slider-track-container {
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 20px;
+    /* Add padding to prevent box-shadow clipping during slide */
+    padding: 1rem;
+    margin: -1rem;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+    padding: 0 10px;
+}
+
+.testimonial-card {
+    padding: 3rem;
+    border-radius: 20px;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-icon {
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    font-size: 5rem;
+    font-family: serif;
+    color: var(--accent-primary);
+    opacity: 0.15;
+    line-height: 1;
+}
+
+.testimonial-text {
+    font-size: 1.4rem;
+    /* Larger, more impactful quote */
+    font-family: var(--font-serif);
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+    font-style: normal;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.testimonial-author-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.author-name {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.author-role {
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+/* Navigation Buttons */
+.slider-btn {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 2px;
+    /* Sharp edges */
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background: var(--text-primary);
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+/* Pagination Dots */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-highlight);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.dot:hover {
+    background: var(--text-secondary);
+}
+
+.dot.active {
+    background: var(--accent-primary);
+    transform: scale(1.2);
+    width: 24px;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        padding: 2rem;
+    }
+
+    .slider-btn {
+        display: none;
+        /* Hide arrows on mobile, rely on dots/swipe (if implemented) */
+    }
+}
