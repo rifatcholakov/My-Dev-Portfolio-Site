@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
                     <li><a href="#projects">Work</a></li>
                     <li><a href="#why-choose-me">Philosophy</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Connect</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 <a href="#projects" className="cta-button">View Work</a>
             </div>

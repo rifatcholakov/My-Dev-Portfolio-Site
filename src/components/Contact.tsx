@@ -27,17 +27,17 @@ const Contact: React.FC = () => {
                     <div className="contact-info">
                         <div className="section-marker" style={{ justifyContent: 'flex-start' }}>
                             <span className="marker-line" style={{ width: '30px' }}></span>
-                            <span className="marker-text">Connect</span>
+                            <span className="marker-text">Contact</span>
                         </div>
                         <h2 className="section-title left">Get in touch</h2>
                         <p className="contact-description">
-                            Currently open to selective partnerships and leadership opportunities within forward-thinking engineering teams.
+                            If you're building something where performance and strong engineering standards are essential, I'd love to hear about it.
                         </p>
 
                         <div className="contact-details">
                             <div className="detail-item">
                                 <span className="detail-label">Email</span>
-                                <a href="mailto:rifat@example.com" className="detail-link">rifat@example.com</a>
+                                <a href="mailto:contact@rifatcholakov.com" className="detail-link">contact@rifatcholakov.com</a>
                             </div>
                             <div className="detail-item">
                                 <span className="detail-label">Location</span>
@@ -46,8 +46,8 @@ const Contact: React.FC = () => {
                             <div className="detail-item">
                                 <span className="detail-label">Social</span>
                                 <div className="social-links">
-                                    <a href="#" className="detail-link">LinkedIn</a>
-                                    <a href="#" className="detail-link">GitHub</a>
+                                    <a href="https://www.linkedin.com/in/rifatcholakov/" target='_blank' className="detail-link">LinkedIn</a>
+                                    <a href="https://github.com/rifatcholakov" target='_blank' className="detail-link">GitHub</a>
                                 </div>
                             </div>
                         </div>
