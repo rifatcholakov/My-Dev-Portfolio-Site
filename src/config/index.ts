@@ -10,8 +10,8 @@
 export const CONTACT_CONFIG = {
     API_URL: 'https://api.web3forms.com/submit',
     ACCESS_KEY: import.meta.env.VITE_WEB3FORMS_KEY || '',
-    // Free plan shared sitekey from Web3Forms. Use your own key on paid plans.
-    HCAPTCHA_SITE_KEY: '50b2fe65-b00b-4b9e-ad62-3ba471098be2',
+    // Site-specific key from HCaptcha / Web3Forms
+    HCAPTCHA_SITE_KEY: import.meta.env.VITE_HCAPTCHA_SITE_KEY || '',
 } as const;
 
 // ──────────────────────────────────────────────

@@ -78,8 +78,8 @@ public/
 
 ```bash
 # Clone the repository
-git clone https://github.com/rifatcholakov/portfolio.git
-cd portfolio
+git clone https://github.com/rifatcholakov/My-Dev-Portfolio-Site.git
+cd My-Dev-Portfolio-Site
 
 # Install dependencies
 npm install
@@ -92,7 +92,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The app runs at `http://localhost:5173` by default.
+The app runs at `http://localhost:3000` by default.
 
 ---
 
@@ -128,7 +128,7 @@ Get a free access key at [web3forms.com](https://web3forms.com).
 - Select your form
 - Under **Block Spam**, switch to **hCaptcha**
 
-> **Note**: The hCaptcha site key `50b2fe65-b00b-4b9e-ad62-3ba471098be2` hardcoded in `src/config/index.ts` is the Web3Forms shared free-plan key. Replace it with your own on a paid plan.
+> **Note**: The hCaptcha site key is loaded from `VITE_HCAPTCHA_SITE_KEY`. The default value provided in `.env.example` is the Web3Forms shared free-plan key. Replace it with your own on a paid plan.
 
 ---
 
