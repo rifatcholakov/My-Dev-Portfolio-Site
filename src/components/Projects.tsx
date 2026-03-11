@@ -45,6 +45,16 @@ const Projects = () => {
                             </div>
                             <div className="minimal-info">
                                 <h3 className="minimal-title">{project.title}</h3>
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="minimal-mobile-link"
+                                    aria-label={`View code for ${project.title} on GitHub`}
+                                >
+                                    <GitHubIcon />
+                                    <span>View Code</span>
+                                </a>
                             </div>
                         </div>
                     ))}
