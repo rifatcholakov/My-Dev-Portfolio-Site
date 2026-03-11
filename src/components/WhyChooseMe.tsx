@@ -41,7 +41,7 @@ const WhyChooseMe: React.FC = () => {
                 <div className="title-wrapper reveal">
                     <div className="section-marker">
                         <span className="marker-line"></span>
-                        <span className="marker-text">Philosophy</span>
+                        <span className="marker-text">Why Work With Me</span>
                         <span className="marker-line"></span>
                     </div>
                     <h2 className="section-title">Why choose me</h2>

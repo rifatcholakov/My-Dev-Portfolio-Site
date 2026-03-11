@@ -6,7 +6,7 @@ const NAV_LINKS = [
     { href: '#hero', label: 'Home' },
     { href: '#skills', label: 'Expertise' },
     { href: '#projects', label: 'Work' },
-    { href: '#why-choose-me', label: 'Philosophy' },
+    { href: '#why-choose-me', label: 'Why Work With Me' },
     { href: '#testimonials', label: 'Testimonials' },
     { href: '#contact', label: 'Contact' },
 ];
