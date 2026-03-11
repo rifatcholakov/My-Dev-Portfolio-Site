@@ -235,6 +235,11 @@
         gap: 2rem;
     }
 
+    .minimal-card:hover .minimal-visual {
+        border-color: var(--border-color);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
     .minimal-card:hover .minimal-img {
         transform: none;
         opacity: 0.85; /* Maintain default opacity on mobile */
