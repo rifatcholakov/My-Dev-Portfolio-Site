@@ -111,7 +111,7 @@ const Contact = () => {
 
                     {/* ── Left: contact info ── */}
                     <div className="contact-info">
-                        <div className="section-marker" style={{ justifyContent: 'flex-start' }}>
+                        <div className="section-marker">
                             <span className="marker-line" style={{ width: '30px' }}></span>
                             <span className="marker-text">Contact</span>
                         </div>

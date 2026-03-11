@@ -26,6 +26,18 @@
   --section-padding: 12rem;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 6rem;
+  }
+}
+
 [data-theme='dark'] {
   /* SaaS-Style Layered Dark Mode */
   --bg-primary: #020617;
@@ -116,6 +128,12 @@ ul {
   padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
 .section {
   padding: var(--section-padding) 0;
   position: relative;
@@ -124,11 +142,17 @@ ul {
 
 /* Clean architectural titles per executive redesign */
 .section-title {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
 }
 
 .title-wrapper {
