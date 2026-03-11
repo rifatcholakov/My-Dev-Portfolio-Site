@@ -1,7 +1,6 @@
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
     width: 100%;
     padding: 1.5rem 0;
     z-index: 1000;
@@ -21,6 +20,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .logo {

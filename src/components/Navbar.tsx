@@ -47,11 +47,13 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="container nav-container">
-                <a href="#" className="logo" onClick={closeMenu}>
-                    <span className="logo-primary">rifat</span>
-                    <span className="logo-accent">cholakov</span>
-                    <span className="logo-dot">.</span>
-                </a>
+                <div className="nav-brand-group">
+                    <a href="#" className="logo" onClick={closeMenu}>
+                        <span className="logo-primary">rifat</span>
+                        <span className="logo-accent">cholakov</span>
+                        <span className="logo-dot">.</span>
+                    </a>
+                </div>
 
                 {isMenuOpen && <div className="nav-backdrop" onClick={closeMenu} aria-hidden="true" />}
 

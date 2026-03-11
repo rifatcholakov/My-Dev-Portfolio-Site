@@ -19,10 +19,6 @@ const Footer = () => {
                             Engineering high-performance digital experiences with a focus on architectural integrity,
                             scalability, and elite user interaction.
                         </p>
-                        <div className="status-indicator">
-                            <span className="status-dot"></span>
-                            <span className="status-text">Available for select projects</span>
-                        </div>
                     </div>
 
                     <div className="footer-column">

@@ -1,6 +1,7 @@
 import { ThemeProvider } from './context/ThemeContext';
 import { useScrollReveal } from './hooks/useScrollReveal';
 import Navbar from './components/Navbar';
+import TopBanner from './components/TopBanner';
 import Hero from './components/Hero';
 import Skills from './components/Skills';
 import WhyChooseMe from './components/WhyChooseMe';
@@ -16,6 +17,7 @@ function AppContent() {
 
   return (
     <div className="app">
+      <TopBanner />
       <Navbar />
       <main>
         <Hero />
