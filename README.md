@@ -26,6 +26,7 @@ src/
 ├── components/         # UI components (Navbar, Hero, Skills, Projects, etc.)
 │   ├── CookieBanner.tsx  # GDPR cookie consent banner
 │   ├── Footer.tsx        # Footer with nav, legal links, and cookie preferences
+│   ├── TopBanner.tsx     # High-visibility availability announcement bar
 │   └── ...
 ├── config/             # Centralized configuration
 │   ├── analytics.ts    # GA4 config, reads VITE_GA_MEASUREMENT_ID from env
@@ -55,12 +56,13 @@ public/
 ├── legal.css             # Shared stylesheet for all legal pages
 ├── legal-theme.js        # Inline theme sync script for legal pages
 ├── _headers              # Cloudflare Pages security & caching headers
-└── _redirects            # Cloudflare Pages SPA fallback routing
+└── favicon.svg           # Custom theme-aware SVG favicon
 
 / (Root)
 ├── .env.example          # Template for required environment variables
 ├── .env.local            # Git-ignored local environment secrets
-└── wrangler.toml         # Cloudflare Pages project configuration
+├── wrangler.toml         # Cloudflare Pages project configuration
+└── .github/workflows/    # CI/CD (GitHub Actions for automated deployment)
 ```
 
 ---
@@ -231,7 +233,8 @@ Pure validation logic lives in `src/utils/validation.ts` — fully testable with
 - **Service layer** — `contactService.ts` owns all `fetch` logic; components never call APIs directly
 - **Consent-gated analytics** — GA4 is loaded only after explicit user consent; removal is instant on rejection
 - **Environment bindings** — Keys/secrets are loaded from `import.meta.env` rather than hardcoded in source
-- **Cloudflare Pages optimized** — Includes secure `_headers` and SPA `_redirects` rules
+- **Cloudflare Pages optimized** — Includes secure `_headers` and automated GitHub Actions deployment
+- **Zero-loop routing** — Cleaned up routing rules to prevent infinite redirect loops on static pages.
 - **IntersectionObserver** for scroll animations instead of raw scroll listeners — more performant and auto-cleans up
 - **Stable React keys** — all `.map()` calls use meaningful unique IDs, not array indices
 - **`import type`** used throughout for TypeScript interfaces — compatible with `isolatedModules`
@@ -240,17 +243,20 @@ Pure validation logic lives in `src/utils/validation.ts` — fully testable with
 
 ## 🌐 Deployment (Cloudflare Pages)
 
-The project is fully configured for zero-config deployment to **Cloudflare Pages**. 
+The project is fully configured for automated deployment to **Cloudflare Pages** using GitHub Actions.
 
-### 1. Deploying the app
-Connect your GitHub repository to Cloudflare Pages. The `wrangler.toml` file will automatically configure the build output directory to `dist/`. Or manually deploy via Wrangler:
+### 1. Automated Deployments
+Simply push to the `main` branch. The `.github/workflows/cloudflare-pages.yml` workflow will:
+1.  **Build** the production assets using Vite.
+2.  **Deploy** the `dist/` directory to the `my-dev-portfolio-site` project on Cloudflare Pages.
 
-```bash
-npm run build
-```
+### 2. Required GitHub Secrets
+To enable the deployment, add the following to your GitHub Repository Secrets:
+- `CLOUDFLARE_API_TOKEN` (API token with Cloudflare Pages Edit permissions)
+- `CLOUDFLARE_ACCOUNT_ID` (Your Cloudflare Account ID)
 
-### 2. Configure Production Secrets
-> **Important**: You must configure the following Environment Variables in your Cloudflare Pages Dashboard for the app to function correctly in production:
+### 3. Production Environment Variables
+You must also configure the following Environment Variables in your Cloudflare Pages Dashboard:
 - `VITE_WEB3FORMS_KEY`
 - `VITE_GA_MEASUREMENT_ID`
 
