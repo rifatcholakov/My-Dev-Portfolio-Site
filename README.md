@@ -247,7 +247,6 @@ Connect your GitHub repository to Cloudflare Pages. The `wrangler.toml` file wil
 
 ```bash
 npm run build
-npx wrangler pages deploy dist
 ```
 
 ### 2. Configure Production Secrets
