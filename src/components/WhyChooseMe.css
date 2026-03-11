@@ -3,7 +3,7 @@
     position: relative;
 }
 
-.reasons-grid {
+.reasons-row {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -94,11 +94,27 @@
 }
 
 @media (max-width: 900px) {
-    .reasons-grid {
-        padding: 0 1rem;
+    .reasons-row {
+        padding: 0 1.5rem;
     }
 
     .reason-item {
         padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .reason-header {
+        border-bottom-color: var(--border-subtle);
+    }
+
+    .reason-item:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+        border-color: var(--border-color);
+    }
+
+    .reason-item:hover .reason-icon {
+        transform: none;
     }
 }

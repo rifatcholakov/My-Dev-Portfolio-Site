@@ -150,13 +150,6 @@
         padding: 2rem;
     }
 
-    .monograph-animate {
-        opacity: 1 !important;
-        filter: none !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
     .executive-card:hover {
         transform: none;
     }
