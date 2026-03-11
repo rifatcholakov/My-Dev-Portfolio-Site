@@ -141,8 +141,8 @@
 }
 
 .minimal-mobile-link:hover {
-    background: var(--text-primary);
-    border-color: var(--text-primary);
+    background: var(--btn-hover-bg);
+    border-color: var(--btn-hover-bg);
 }
 
 .minimal-title {
@@ -266,5 +266,12 @@
     .minimal-title {
         font-size: 1.5rem;
         padding-left: 0.5rem;
+    }
+
+    .monograph-animate {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
     }
 }

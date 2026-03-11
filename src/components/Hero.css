@@ -306,6 +306,21 @@
 }
 
 @media (max-width: 768px) {
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .hero-availability:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .hero-availability:hover .availability-arrow {
+        transform: none;
+    }
+
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 3rem;

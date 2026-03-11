@@ -240,4 +240,10 @@
     .dot.active {
         width: 24px;
     }
+
+    .testimonial-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm); /* Keep simple shadow */
+        border-color: var(--border-color);
+    }
 }
