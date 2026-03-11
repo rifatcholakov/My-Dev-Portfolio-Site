@@ -2,6 +2,7 @@
 import type { Project, SkillItem, Testimonial } from '../types';
 import copyEnableImg from '../assets/easil-enable-copy-and-right-click.png';
 import cozySpringMeadowImg from '../assets/cozy-spring-meadow.jpg';
+import easyVolumeBoosterImg from '../assets/easy-volume-booster.png';
 
 export const PROJECTS_DATA: Project[] = [
     {
@@ -12,7 +13,7 @@ export const PROJECTS_DATA: Project[] = [
     {
         title: "Easy Volume Booster",
         github: "https://github.com/rifatcholakov/Easy-Volume-Booster",
-        image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22600%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%23111827%22%2F%3E%3C%2Fsvg%3E"
+        image: easyVolumeBoosterImg
     },
     {
         title: "Cozy Spring Meadow",
