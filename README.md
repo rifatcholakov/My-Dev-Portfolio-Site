@@ -256,9 +256,14 @@ To enable the deployment, add the following to your GitHub Repository Secrets:
 - `CLOUDFLARE_ACCOUNT_ID` (Your Cloudflare Account ID)
 
 ### 3. Production Environment Variables
-You must also configure the following Environment Variables in your Cloudflare Pages Dashboard:
-- `VITE_WEB3FORMS_KEY`
-- `VITE_GA_MEASUREMENT_ID`
+You must configure your environment variables in the **Cloudflare Pages Dashboard** (Settings > Environment variables). They are **not** loaded from `.env` files in production.
+
+1.  **VITE_WEB3FORMS_KEY**: Your Web3Forms Access Key.
+2.  **VITE_HCAPTCHA_SITE_KEY**: Your hCaptcha site key (use `50b2fe65-b00b-4b9e-ad62-3ba471098be2` for the shared free plan).
+3.  **VITE_GA_MEASUREMENT_ID**: Your Google Analytics 4 Measurement ID.
+
+> [!NOTE]
+> After adding or changing variables in the dashboard, you must **redeploy** the project for the changes to take effect.
 
 ---
 
