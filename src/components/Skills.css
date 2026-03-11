@@ -148,13 +148,41 @@
 
     .executive-card {
         padding: 2rem;
+        background-color: var(--bg-card); /* Keep static bg */
+        border-color: var(--border-color); /* Keep static border */
+        box-shadow: var(--shadow-sm); /* Keep subtle static shadow */
+        transform: none !important;
     }
 
     .executive-card:hover {
-        transform: none;
+        transform: none !important;
+        box-shadow: var(--shadow-sm) !important;
+        border-color: var(--border-color) !important;
+        background-color: var(--bg-card) !important;
     }
 
     .executive-card:hover .card-icon-box {
-        transform: none;
+        transform: none !important;
+    }
+
+    .card-item {
+        color: var(--text-primary); /* Better readability by default on mobile */
+    }
+
+    .item-bullet {
+        background: var(--text-secondary); /* Slightly more prominent than default border-color */
+    }
+
+    .executive-card:hover .item-bullet {
+        background: var(--text-secondary) !important;
+        transform: none !important;
+    }
+
+    .card-number {
+        opacity: 0.4; /* More visible than default index on mobile */
+    }
+
+    .executive-card:hover .card-number {
+        opacity: 0.4 !important;
     }
 }
