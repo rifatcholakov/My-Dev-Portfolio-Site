@@ -22,7 +22,28 @@ const Testimonials = () => {
                     <p className="section-subtitle">Feedback from colleagues and clients I've had the pleasure to work with.</p>
                 </div>
 
-                <div className="slider-container reveal" role="region" aria-label="Testimonials slider">
+                <div 
+                    className="slider-container reveal" 
+                    role="region" 
+                    aria-label="Testimonials slider"
+                    onTouchStart={(e) => {
+                        const touch = e.touches[0];
+                        (e.currentTarget as any).touchStartX = touch.clientX;
+                    }}
+                    onTouchEnd={(e) => {
+                        const touchStartX = (e.currentTarget as any).touchStartX;
+                        const touchEndX = e.changedTouches[0].clientX;
+                        const diff = touchStartX - touchEndX;
+
+                        if (Math.abs(diff) > 50) { // Threshold for swipe
+                            if (diff > 0) {
+                                nextSlide();
+                            } else {
+                                prevSlide();
+                            }
+                        }
+                    }}
+                >
                     <button
                         className="slider-btn prev-btn"
                         onClick={prevSlide}
