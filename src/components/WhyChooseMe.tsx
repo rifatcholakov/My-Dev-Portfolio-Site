@@ -30,7 +30,7 @@ const WhyChooseMe: React.FC = () => {
         {
             title: "A Partner, Not Just a Feature Developer",
             subtitle: "Radical Ownership.",
-            description: "I don’t just deliver features—I own outcomes. From initial architecture to production stability, I treat your codebase like my own product. You aren’t just hiring a developer; you’re gaining a partner committed to your product’s long-term success.",
+            description: "I don’t just deliver features - I own outcomes. From initial architecture to production stability, I treat your codebase like my own product. You aren’t just hiring a developer; you’re gaining a partner committed to your product’s long-term success.",
             icon: "🤝"
         }
     ];
