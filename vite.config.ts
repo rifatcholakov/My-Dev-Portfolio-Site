@@ -15,5 +15,13 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        privacy: './privacy-policy.html',
+        cookie: './cookie-policy.html',
+        terms: './terms-of-use.html',
+      },
+    },
   }
 })
