@@ -5,6 +5,7 @@ import { submitContactForm } from '../services/contactService';
 import { validateContactForm, isFormValid } from '../utils/validation';
 import type { FormErrors, FormFields } from '../utils/validation';
 import { PROFILE, FORM_MESSAGES, CONTACT_CONFIG } from '../config';
+import { trackEvent } from '../config/analytics';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -88,6 +89,12 @@ const Contact = () => {
         const result = await submitContactForm({ ...fields, captchaToken });
 
         if (result.success) {
+            // Track successful form submission using the centralized helper
+            trackEvent('generate_lead', {
+                'event_category': 'Contact',
+                'event_label': 'Contact Form Submission'
+            });
+
             setStatus('success');
             setFields(EMPTY_FORM);
             setErrors({});

@@ -16,6 +16,12 @@ export default defineConfig({
     sourcemap: false,
     emptyOutDir: true,
     rollupOptions: {
+      output: {
+        manualChunks: {
+          analytics: ['./src/config/analytics.ts', './src/legal-analytics.ts'],
+          vendor: ['react', 'react-dom'],
+        },
+      },
       input: {
         main: './index.html',
         privacy: './privacy-policy.html',
